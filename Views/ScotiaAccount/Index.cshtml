@@ -1,0 +1,59 @@
+﻿@model NovaScotia.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    
+}
+
+<style>
+    #signupPic {
+        width: 100%;
+        height: 330px;
+    }
+
+    #logi {
+        width: 70px;
+        height: 70px;
+    }
+</style>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+
+<div class="container" style="background-color:#F0F0F0">
+    <img src="~/images/Scotia/scotia-banner.png" id="signupPic" />
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <header class="card-header">
+                    <a href="#" class="float-right btn btn-outline-primary mt-1">Login Page</a>
+
+                    <img src="~/images/Scotia/scotialogo.png" />
+                </header>
+                <article class="card-body">
+                    
+                </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--container end.//-->
+
+<br>
+<br>
+<article class="bg-secondary mb-3">
+    <div class="card-body text-center">
+        <h3 class="text-white mt-3">Forget The Branch Bank Online!</h3>
+        <p class="h5 text-white">
+            Use Scotia Online  <br> for E-Payments, Customer Service, Updates
+            and product landing pages
+        </p>   <br>
+        <p>
+            <a class="btn btn-warning" asp-controller="ScotiaHome" asp-action="Index">
+                Back To Home Page
+                <i class="fa fa-window-restore "></i>
+            </a>
+        </p>
+    </div>
+    <br><br>
+</article>

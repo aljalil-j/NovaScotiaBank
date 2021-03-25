@@ -1,0 +1,31 @@
+﻿@model NovaScotia.ViewModels.DeleteRoleViewModel
+
+@{
+    ViewBag.Title = "Delete Role";
+    Layout = "~/Views/Shared/ScotiaLayout.cshtml";
+}
+
+<h1>Delete Role</h1>
+
+<form method="post" class="mt-3">
+    <div class="form-group row">
+        <label asp-for="Id" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Id" disabled class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row">
+
+
+    </div>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Delete</button>
+            <a asp-action="ListRoles" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+
+</form>

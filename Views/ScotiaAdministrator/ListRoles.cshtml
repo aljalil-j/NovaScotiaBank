@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<IdentityRole>
+<h1> All Roles</h1>
+
+@{
+    ViewBag.Title = "All Roles";
+    Layout = "~/Views/Shared/ScotiaLayout.cshtml";
+}
+
+@if (Model.Any())
+{
+    <a class="btn btn-primary mb-3" style="width:auto" asp-action="CreateRole" asp-controller="ScotiaAdministrator"> Add new role</a>
+    foreach (var role in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                Role ID: @role.Id
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@role.Name</h5>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-primary" asp-controller="ScotiaAdministrator" asp-action="EditRole" asp-route-id="@role.Id">Edit</a>
+                <span style="display:none" id="confirmSpan_@role.Id">
+                    <span>Are you sure you want to Delete?</span>
+                    <a class="btn btn-danger" asp-controller="ScotiaAdministrator" asp-action="DeleteRole"
+                       asp-route-id="@role.Id">YES</a>
+                    <a class="btn btn-primary" href="#" onclick="confirmDelete('@role.Id',false)">NO</a>
+                </span>
+                <span id="deleteSpan_@role.Id">
+                    <a class="btn btn-danger" href="#" onclick="confirmDelete('@role.Id',true)">Delete</a>
+                </span>
+            </div>
+            <div><span>@ViewBag.ErrorMessage</span></div>
+        </div>
+    }
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            No Roles Created Yet
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                Use the button below to create a role
+            </h5>
+            <a class="btn btn-primary" style="width:auto" asp-controller="ScotiaAdministrator" asp-action="CreateRole">
+                Create Role
+            </a>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script src="~/js/site.js"></script>
+}
