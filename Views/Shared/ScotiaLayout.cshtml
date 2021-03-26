@@ -41,10 +41,26 @@
                 <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                 @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                 {
-                    
 
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Admin">Administration</a>
-                    
+
+                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Admin">Administration</a>
+
+                }
+
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Teller"))
+                {
+
+
+                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Teller">Teller</a>
+
+                }
+
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Customer"))
+                {
+
+
+            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="AccountDetails">Your Account</a>
+
                 }
 
                 <button class="navbar-toggler " type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -54,7 +70,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav ml-auto">
 
-                       
+
                         @if (signInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">

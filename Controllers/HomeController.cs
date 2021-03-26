@@ -27,6 +27,17 @@ namespace NovaScotia.Controllers
             return View();
         }
 
+        public IActionResult Teller()
+        {
+            return View();
+        }
+
+
+        public IActionResult AccountDetails()
+        {
+            return View();
+        }
+
 
         public IActionResult Privacy()
         {

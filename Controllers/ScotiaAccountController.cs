@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace NovaScotia.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Teller")]
 
     public class ScotiaAccountController : Controller
     {

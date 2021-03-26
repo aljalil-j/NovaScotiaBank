@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewData["Title"] - Scotia Bank</title>
 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -41,10 +42,25 @@
                 <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                 @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                 {
-                    
 
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Admin">Administration</a>
-                   
+
+                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Admin">Administration</a>
+
+                }
+
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Teller"))
+                {
+
+
+                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Teller">Teller</a>
+
+                }
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Customer"))
+                {
+
+
+                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="AccountDetails">Your Account</a>
+
                 }
 
                 <button class="navbar-toggler " type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"

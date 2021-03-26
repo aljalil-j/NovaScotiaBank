@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace NovaScotia.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Teller")]
 
     public class ScotiaCustomerController : Controller
     {
