@@ -35,6 +35,12 @@ namespace NovaScotia.Controllers
             return View(await _context.ScotiaCustomer.ToListAsync());
         }
 
+      
+        public async Task<IActionResult> AccountDetails()
+        {
+            return View(await _context.ScotiaCustomer.ToListAsync());
+        }
+
         // GET: ScotiaCustomer/Details/5
         public async Task<IActionResult> Details(int? id)
         {

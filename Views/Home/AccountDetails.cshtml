@@ -1,1 +1,99 @@
-﻿
+﻿@model NovaScotia.Models.ScotiaCustomer
+@{
+
+    ViewBag.Title = "Account Details";
+    
+}
+
+<style>
+    #signupPic {
+        width: 100%;
+        height: 230px;
+    }
+
+    #logi {
+        width: 70px;
+        height: 70px;
+    }
+</style>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .column {
+        float: right;
+        width: 33.33%;
+        padding: 5px;
+    }
+
+    /* Clearfix (clear floats) */
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+</style>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+
+<div class="container" style="background-color:#F0F0F0">
+
+    
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <header class="card-header">
+                    
+                    <h2>Account Information</h2>
+                   
+                </header>
+                <article class="card-body">
+
+                    <div class="form-group">
+                        <input asp-for="id" hidden readonly class="form-control" value="@ViewBag.userid" placeholder="@ViewBag.userid" />
+                        <span asp-validation-for="id" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" readonly class="form-control" value="@ViewBag.email" placeholder="@ViewBag.email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address"></label>
+                        <input asp-for="Address" readonly class="form-control" value="@ViewBag.address" placeholder="@ViewBag.address" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AccountNumber"></label>
+                        <input asp-for="AccountNumber" readonly class="form-control" value="@ViewBag.accountnum" placeholder="@ViewBag.accountnum" />
+                        <span asp-validation-for="AccountNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="CardNumber "></label>
+                        <input asp-for="CardNumber " readonly class="form-control" value="@ViewBag.cardnum" placeholder="@ViewBag.cardnum" />
+                        <span asp-validation-for="CardNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Balance"></label>
+                        <input asp-for="Balance" readonly class="form-control"  value="@ViewBag.Balance" placeholder="@ViewBag.Balance" />
+                        <span asp-validation-for="Balance" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AccountType"></label>
+                        <input asp-for="AccountType" readonly class="form-control" value="@ViewBag.account" placeholder="@ViewBag.account" />
+                        <span asp-validation-for="AccountType" class="text-danger"></span>
+                    </div>
+
+
+
+                </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

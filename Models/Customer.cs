@@ -16,5 +16,17 @@ namespace NovaScotia.Models
         public string Lname { get; set; }
 
         public string AccountNum { get; set; }
+
+      
+       // public ScotiaCustomer Result { get; internal set; }
+
+        /* public string Address { get; set; }
+         public int CardNumber { get; set; }
+         public decimal Balance { get; set; }
+         public string AccountType { get; set; }*/
     }
 }
+
+
+
+

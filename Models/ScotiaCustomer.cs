@@ -73,5 +73,9 @@ namespace NovaScotia.Models
         [Display(Name = "Account Type")]
         public string AccountType { get; set; }
 
+        public static implicit operator ScotiaCustomer(Customer v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
