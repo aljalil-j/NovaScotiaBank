@@ -46,7 +46,7 @@ namespace NovaScotia
 
             services.AddIdentity<Customer, IdentityRole>()
                .AddEntityFrameworkStores<BillContext>();
-
+           
 
 
             //services.AddIdentity<ScotiaCustomer, IdentityRole>()

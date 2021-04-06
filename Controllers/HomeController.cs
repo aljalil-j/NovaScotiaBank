@@ -1,21 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using NovaScotia.Data;
 using NovaScotia.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace NovaScotia.Controllers
 {
     public class HomeController : Controller
+
     {
+        private readonly ScotiaCustomerContext _context;
+        private readonly UserManager<Customer> userManager;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ScotiaCustomerContext context, UserManager<Customer> userManager)
         {
+            _context = context;
+            this.userManager = userManager;
             _logger = logger;
+         
         }
 
         public IActionResult Index()
@@ -32,11 +42,23 @@ namespace NovaScotia.Controllers
             return View();
         }
 
-
-        public IActionResult AccountDetails()
+        [Authorize(Roles = "Customer")]
+        [HttpGet]
+        public  IActionResult AccountDetails()
         {
+            string userid = userManager.GetUserId(HttpContext.User);
+            Customer cus = userManager.FindByIdAsync(userid).Result;
+
+            //ViewBag.accountnum = cus.AccountNumber;
+            ViewBag.email = cus.Email;
+           // ViewBag.address = cus.Address;
+           // ViewBag.cardnum = cus.CardNumber;
+           // ViewBag.cardnum = cus.Balance;
+           // ViewBag.account = cus.AccountType;
+
             return View();
         }
+
 
 
         public IActionResult Privacy()
