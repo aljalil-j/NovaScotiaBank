@@ -1,0 +1,162 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<Customer> signInManager;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Scotia Bank</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="/images/Scotia/scotialogo.png">
+    <style>
+        #ScotiaNav {
+            background-color: red;
+        }
+
+        .navbar {
+            background: red !important;
+            margin-top: -40px;
+        }
+
+        #scopic {
+            height: 75px;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" id="ScotiaNav">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+
+                    <img id="scopic" src="~/images/Scotia/scotialogo.png" />
+                </a>
+
+                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+
+
+                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Admin">Administration</a>
+
+                }
+
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Teller"))
+                {
+
+
+                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Teller">Teller</a>
+
+                }
+
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Customer"))
+                {
+
+
+            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="AccountDetails">Your Account</a>
+
+                }
+
+                <button class="navbar-toggler " type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav ml-auto">
+
+
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <form method="post" asp-action="logout" asp-controller="Account">
+                                    <button type="submit" class="nav-link btn btn-link py-0" style="width:auto">
+                                        Logout @User.Identity.Name
+                                    </button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="login">Login</a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer-distributed">
+
+        <div class="footer-left">
+            <img src="~/images/Scotia/scotialogo.png" />
+            <h3>About<span style="color:red">Scotia</span></h3>
+
+            <p class="footer-links">
+                <a href="#">Home</a>
+                |
+                <a href="#">Blog</a>
+                |
+                <a href="#">About</a>
+                |
+                <a href="#">Contact</a>
+            </p>
+
+            <p class="footer-company-name">© 2021 Scotia Bank Jamaica Pvt. Ltd.</p>
+        </div>
+
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p>
+                    <span>
+                        309 - Rupa Solitaire,
+                        Bldg. No. A - 1, Sector - 1
+                    </span>
+                    New Kingston, St.Andrew - 400710
+                </p>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>888-4-SCOTIA</p>
+            </div>
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:support@eduonix.com">support@scotiaja.com</a></p>
+            </div>
+        </div>
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>About the company</span>
+                We Provide The Finincial Needs of Jamaicans Island-wide through Affordable rates, High Security, Innovation, and Wisdom!
+            </p>
+            <div class="footer-icons">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

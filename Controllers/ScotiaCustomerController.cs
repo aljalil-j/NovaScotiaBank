@@ -54,6 +54,7 @@ namespace NovaScotia.Controllers
         }
 
         // GET: ScotiaCustomer/Create
+        
         public IActionResult Create()
         {
             return View();
