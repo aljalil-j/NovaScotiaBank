@@ -25,7 +25,7 @@ namespace NovaScotia.Controllers
             _context = context;
             this.userManager = userManager;
             _logger = logger;
-         
+
         }
 
         public IActionResult Index()
@@ -44,17 +44,16 @@ namespace NovaScotia.Controllers
 
         [Authorize(Roles = "Customer")]
         [HttpGet]
-        public  IActionResult AccountDetails()
+        public async Task<IActionResult> AccountDetailsAsync()
         {
             string userid = userManager.GetUserId(HttpContext.User);
             Customer cus = userManager.FindByIdAsync(userid).Result;
-
-            //ViewBag.accountnum = cus.AccountNumber;
-            ViewBag.email = cus.Email;
-           // ViewBag.address = cus.Address;
-           // ViewBag.cardnum = cus.CardNumber;
-           // ViewBag.cardnum = cus.Balance;
-           // ViewBag.account = cus.AccountType;
+            var scotiaCus = _context.ScotiaCustomer.Where(x => x.Email == userid);
+            var customer = await scotiaCus.ToListAsync();
+            for (int i = 0; i < customer.Count; i++)
+            {
+                return View(customer[i]);
+            }
 
             return View();
         }
@@ -72,4 +71,5 @@ namespace NovaScotia.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
+    
 }

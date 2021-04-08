@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 using System.Linq.Expressions;
 using Microsoft.AspNetCore.Authorization;
+using NovaScotiaWebService;
 
 namespace NovaScotia.Controllers
 {
@@ -23,6 +24,7 @@ namespace NovaScotia.Controllers
         private readonly ScotiaCustomerContext _context2;
         private readonly UserManager<Customer> userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        NovaScotiaWebServiceClient WebService = new NovaScotiaWebServiceClient();
 
         public ScotiaTransactionController(ScotiaTransactionContext context, UserManager<Customer> userManager, IHttpContextAccessor httpContextAccessor,
             ScotiaCustomerContext context2 )
@@ -58,6 +60,23 @@ namespace NovaScotia.Controllers
             return View();
 
         }
+
+        [HttpGet]
+        public IActionResult Client()
+        {
+
+            return View();
+
+        }
+        [HttpPost]
+        public IActionResult Client([Bind("Id,AccountNumber,TransactionType,Amount")] ScotiaTransaction scotiaTransaction)
+        {
+
+            WebService.MakePaymentAsync(scotiaTransaction.AccountNumber, scotiaTransaction.TransactionType, scotiaTransaction.Amount, 0);
+            return View();
+
+        }
+
 
         [HttpPost]
         public  async Task<IActionResult> Deposit([Bind("Id,AccountNumber,TransactionType,Amount")] ScotiaTransaction scotiaTransaction)
