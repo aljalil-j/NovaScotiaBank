@@ -48,7 +48,7 @@ namespace NovaScotia.Controllers
         {
             string userid = userManager.GetUserId(HttpContext.User);
             Customer cus = userManager.FindByIdAsync(userid).Result;
-            var scotiaCus = _context.ScotiaCustomer.Where(x => x.Email == userid);
+            var scotiaCus = _context.ScotiaCustomer.Where(x=> x.AccountNumber==cus.AccountNum);
             var customer = await scotiaCus.ToListAsync();
             for (int i = 0; i < customer.Count; i++)
             {

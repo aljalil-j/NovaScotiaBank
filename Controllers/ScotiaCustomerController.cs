@@ -75,9 +75,18 @@ namespace NovaScotia.Controllers
         {
             if (ModelState.IsValid)
             {
-                
 
 
+                var user = new Customer
+                {
+                    UserName = scotiaCustomer.Email,
+                    Email = scotiaCustomer.Email,
+                    Fname = scotiaCustomer.First,
+                    Lname = scotiaCustomer.Last,
+                    AccountNum = scotiaCustomer.AccountNumber
+                };
+                var result = await userManager.CreateAsync(user, scotiaCustomer.Password);
+                var result2= await userManager.AddToRoleAsync(user, "Customer");
                 _context.Add(scotiaCustomer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
